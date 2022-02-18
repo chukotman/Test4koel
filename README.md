@@ -1,2 +1,2 @@
-# Test4koel
-Web music player testing
+# Automation
+This is repository for automation group students

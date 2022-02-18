@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Master Suite" parallel="classes" thread-count="3">
+    <listeners>
+        <listener class-name="listeners.Listeners"/>
+    </listeners>
+    <parameter name="url" value="https://bbb.testpro.io/"/>
+    <parameter name="browser" value="CHROME"/>
+    <parameter name="username" value="chukotman@gmail.com"/>
+    <parameter name="password" value="T11jk7816+"/>
+    <test name="Selenium test">
+        <classes>
+            <class name="pageObjects.pageObjectTests.LoginFactoryTests">
+                <methods>
+                    <include name="factory_correctCredentials_loggedToApp"/>
+                    <include name="factory_inCorrectCredentials_loggedToApp"/>
+                    <include name="factory_correctCredentials_loggedToApp1"/>
+                    <include name="factory_inCorrectCredentials_loggedToApp1"/>
+                    <include name="factory_correctCredentials_loggedToApp2"/>
+                    <include name="factory_inCorrectCredentials_loggedToApp2"/>
+                    <include name="factory_correctCredentials_loggedToApp3"/>
+                    <include name="factory_inCorrectCredentials_loggedToApp3"/>
+                </methods>
+            </class>
+            <class name="pageObjects.pageObjectTests.LoginTests">
+                <methods>
+                    <include name="flakyTest"/>
+                    <include name="login_correctCredentials_LoggedToMainPage"/>
+                    <include name="login_incorrectCredentials_errorFrame"/>
+                    <include name="login_correctCredentials_loggedToMainPage1"/>
+                    <include name="login_incorrectCredentials_errorFrame1"/>
+                    <include name="login_correctCredentials_loggedToMainPage2"/>
+                    <include name="login_incorrectCredentials_errorFrame2"/>
+                    <include name="login_correctCredentials_loggedToMainPage3"/>
+                    <include name="login_incorrectCredentials_errorFrame3"/>
+                </methods>
+            </class>
+            <class name="pageObjects.pageObjectTests.PlaylistTests">
+                <methods>
+                    <include name="playlist_createPlaylist_playlistCreated"/>
+                    <include name="playlist_renamePlaylist_playlistRenamed"/>
+                    <include name="playlist_createPlaylist_playlistCreated1"/>
+                    <include name="playlist_renamePlaylist_playlistRenamed1"/>
+                    <include name="playlist_createPlaylist_playlistCreated2"/>
+                    <include name="playlist_renamePlaylist_playlistRenamed2"/>
+                    <exclude name="playlist_createPlaylist_playlistCreated3"/>
+                    <exclude name="playlist_renamePlaylist_playlistRenamed3"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

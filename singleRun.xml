@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Master Suite" parallel="classes" thread-count="3">
+    <listeners>
+        <listener class-name="listeners.Listeners"/>
+    </listeners>
+    <parameter name="url" value="https://bbb.testpro.io/"/>
+    <parameter name="browser" value="CHROME"/>
+    <parameter name="username" value="chukotman@gmail.com"/>
+    <parameter name="password" value="T11jk7816+"/>
+    <test name="Selenium test">
+        <classes>
+            <class name="pageObjects.pageObjectTests.HybridTest">
+                <methods>
+                    <include name="hybrid_renamePlaylist_playlistRenamed"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

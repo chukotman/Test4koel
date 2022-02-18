@@ -1,0 +1,131 @@
+{
+	"info": {
+		"_postman_id": "cd5cfb86-086c-4877-bb2a-a3ab3e0a84b6",
+		"name": "Koel",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const json = pm.response.json();\r",
+							"\r",
+							"pm.test('Assert status code is 200',()=>{\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test('Assert response has key \\'token\\'',()=>{\r",
+							"    // console.log(json)\r",
+							"    pm.expect(json).to.have.all.keys('token');\r",
+							"});\r",
+							"\r",
+							"pm.test('Assert token value is a string',()=>{\r",
+							"    pm.expect(json.token).to.be.a('string');\r",
+							"});\r",
+							"\r",
+							"pm.environment.set('token',json.token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": {{userName}},\r\n    \"password\": {{password}}\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}{{apiUrl}}me",
+					"host": [
+						"{{baseUrl}}{{apiUrl}}me"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Data",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Assert status code is 200',()=>{\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"const json = pm.response.json();\r",
+							"pm.test('Assert response body has \\'albums\\', \\'artists\\', \\'songs\\'',()=>{\r",
+							"    pm.expect(json).to.have.any.keys('albums','artists','songs');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}{{apiUrl}}data",
+					"host": [
+						"{{baseUrl}}{{apiUrl}}data"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "apiUrl",
+			"value": "api/",
+			"type": "string"
+		}
+	]
+}
